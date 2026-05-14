@@ -40,6 +40,17 @@
                 <input type="submit" value="삭제">
             </form>
         </td>
+        <td>
+            <form th:action="@{/member/search}" method="get">
+                <select name="type">
+                    <option value="">검색 조건 선택</option>
+                    <option value="name">이름</option>
+                    <option value="addr">주소</option>
+                </select>
+                <input type="text" name="keyword">
+                <input type="submit" value="검색">
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

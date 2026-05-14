@@ -67,4 +67,13 @@ public class MemberController {
         return "redirect:/member/view";
     }
 
+    @GetMapping("/search")
+    public String search(@RequestParam String type,
+                         @RequestParam String keyword,
+                         Model model)
+    {
+        model.addAttribute("title", "검색 결과");
+        model.addAttribute("lists",memberService.search(type,keyword));
+        return "showMember";
+    }
 }

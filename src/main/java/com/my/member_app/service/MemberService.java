@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,5 +37,18 @@ public class MemberService  {
 
     public void deleteById(Long id){
         memberRepository.deleteById(id);
+    }
+
+    //검색 서비스
+    public List<MemberDto> search(String type,String keyword){
+        List<Member> searchList = new ArrayList<>();
+        switch (type){
+            case "name" -> searchList = memberRepository.searchByName(keyword);
+            case "addr" -> searchList = memberRepository.searchByAddr(keyword);
+            default -> searchList = memberRepository.findAll();
+        }
+        return searchList.stream()
+                .map(MemberDto::toDto)
+                .collect(Collectors.toList());
     }
 }
