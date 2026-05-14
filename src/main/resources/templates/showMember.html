@@ -17,11 +17,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>장원영</td>
-                <td>20</td>
-                <td>서울</td>
+            <tr th:each="member : ${lists}" th:object="${member}">
+                <td th:text = "*{memberId}">1</td>
+                <td  th:text = "*{name}">1</td>
+                <td  th:text = "*{age}">1</td>
+                <td  th:text = "*{addr}">1</td>
                 <td>
                     <form action="">
                         <input type="submit" value="수정">
